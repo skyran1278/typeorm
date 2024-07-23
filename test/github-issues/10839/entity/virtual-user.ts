@@ -10,9 +10,9 @@ export class VirtualUser {
         query: (alias) => {
             return `
                 SELECT
-                    "age"
+                    "id"
                 FROM
-                    "user"
+                    "virtual_user"
                 WHERE
                     "id" = ${alias}.id`
         },
