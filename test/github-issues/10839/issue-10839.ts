@@ -6,7 +6,6 @@ import {
     createTestingConnections,
     reloadTestingDatabases,
 } from "../../utils/test-utils"
-import { User } from "./entity/user"
 import { VirtualUser } from "./entity/virtual-user"
 
 describe.only("github issues > #10839 SQL Error from Trailing Line Break in VirtualColumn Query String", () => {
@@ -25,12 +24,7 @@ describe.only("github issues > #10839 SQL Error from Trailing Line Break in Virt
     it("should generate correctly SQL command with Trailing Line Break in VirtualColumn", () =>
         Promise.all(
             dataSources.map(async (dataSource) => {
-                const user = dataSource.manager.create(User, { age: 100 })
-                await dataSource.manager.save(user)
-
-                const virtualUser = dataSource.manager.create(VirtualUser, {
-                    id: user.id,
-                })
+                const virtualUser = dataSource.manager.create(VirtualUser, {})
                 await dataSource.manager.save(virtualUser)
 
                 const virtualColumnUser =
