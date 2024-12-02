@@ -1,11 +1,11 @@
-import { Gulpclass, Task, SequenceTask, MergedTask } from "gulpclass";
+import { Gulpclass, MergedTask, SequenceTask, Task } from "gulpclass";
 
+import del from "del";
 import fs from "fs";
 import gulp from "gulp";
-import del from "del";
-import shell from "gulp-shell";
-import replace from "gulp-replace";
 import rename from "gulp-rename";
+import replace from "gulp-replace";
+import shell from "gulp-shell";
 import sourcemaps from "gulp-sourcemaps";
 import ts from "gulp-typescript";
 
@@ -102,7 +102,7 @@ export class Gulpfile {
     packagePublish() {
         return gulp.src("package.json", { read: false })
             .pipe(shell([
-                "cd ./build/package && npm publish"
+                "cd ./build/package && npm publish --access public"
             ]));
     }
 
